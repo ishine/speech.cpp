@@ -94,7 +94,7 @@ struct FamilyInfo {
     /** Whether add_voice() takes a recording in a WAVE file, which it encodes, besides a voice file. */
     bool voice_recordings = false;
     size_t max_text_tokens = 0;
-    /** The most speakers a diarization model tells apart; 0 for a model of another task. */
+    /** The most speakers a diarization model tells apart; 0 for a model of another task or one with no limit. */
     int speakers = 0;
     std::vector<OptionSpec> options;
     /** What the file lacks of what the family takes, which a request is refused with by its own message. */
@@ -369,6 +369,9 @@ std::unique_ptr<Engine> load_silero_vad(const std::string & path, ggml_backend_t
 
 FamilyInfo describe_sortformer(const std::shared_ptr<const ModelFile> & file);
 std::unique_ptr<Engine> load_sortformer(const std::string & path, ggml_backend_t backend, int threads);
+
+FamilyInfo describe_fastdiar(const std::shared_ptr<const ModelFile> & file);
+std::unique_ptr<Engine> load_fastdiar(const std::string & path, ggml_backend_t backend, int threads);
 
 FamilyInfo describe_semamba(const std::shared_ptr<const ModelFile> & file);
 std::unique_ptr<Engine> load_semamba(const std::string & path, ggml_backend_t backend, int threads);

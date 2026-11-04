@@ -125,7 +125,16 @@ std::vector<SpeakerSegment> Diarization::segments() const {
 
 std::vector<SpeakerSegment> Diarization::within(double start, double end) const {
     std::lock_guard<std::mutex> lock(mutex_);
-    return speakers_within(segments(), start, end);
+    std::vector<SpeakerSegment> joined;
+    for (const SpeakerSegment & s : speakers_within(segments(), start, end)) {
+        // A stream may give one speaker's unbroken run in pieces, whose times differ by rounding where they meet.
+        if (!joined.empty() && joined.back().speaker == s.speaker && s.start - joined.back().end < 1e-6) {
+            joined.back().end = std::max(joined.back().end, s.end);
+        } else {
+            joined.push_back(s);
+        }
+    }
+    return joined;
 }
 
 int Diarization::numbers_used() const {

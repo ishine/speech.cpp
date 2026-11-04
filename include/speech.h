@@ -769,7 +769,7 @@ SPEECH_API speech_status speech_model_info_text_tokens(const speech_model_info *
 
 /**
  * The most speakers a diarization model tells apart, which number the speakers of its segments from 0 (8 for Nemotron 3
- * Diarization); 0 for a model of another task.
+ * Diarization); 0 for a model of another task or one with no limit, as FASTDIAR, which opens speakers as it hears them.
  */
 SPEECH_API int speech_model_info_speakers(const speech_model_info * info);
 

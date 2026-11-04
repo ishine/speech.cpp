@@ -71,7 +71,10 @@ public:
      * or the audio has ended, or the diarization failed, which leaves the speakers it gave.
      */
     bool covers(double seconds) const;
-    /** The speakers of [start, end) of the diarization's audio, the segments given and those under way, as speakers_within(). */
+    /**
+     * The speakers of [start, end) of the diarization's audio, the segments given and those under way, as speakers_within(),
+     * a speaker's segments that meet joined into one.
+     */
     std::vector<SpeakerSegment> within(double start, double end) const;
     /** One more than the highest number of a speaker in the segments given and under way, or 0 for none. */
     int numbers_used() const;

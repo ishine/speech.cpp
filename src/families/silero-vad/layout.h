@@ -13,4 +13,7 @@ namespace silero_vad {
  */
 extern const Layout layout;
 
+/** Reads the keys of silero-vad.*, checks the ones that must agree, and names the tensors they call for, in a file of any family that carries the network. */
+std::vector<TensorSpec> network_tensors(const ModelFile & m);
+
 }  // namespace silero_vad

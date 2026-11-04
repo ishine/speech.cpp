@@ -23,6 +23,8 @@ class Detector {
 public:
     /** Loads the model file at `path`; a backend that cannot compute an operation of the network throws a device error. */
     Detector(const std::string & path, ggml_backend_t backend);
+    /** The network in a file of another family's `file_layout`, of which `keep` names the tensors. */
+    Detector(const std::string & path, ggml_backend_t backend, const Layout & file_layout, const std::function<bool(const std::string & name)> & keep);
     ~Detector();
     Detector(const Detector &) = delete;
     Detector & operator=(const Detector &) = delete;

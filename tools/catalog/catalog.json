@@ -244,6 +244,19 @@
       ]
     },
     {
+      "name": "fastdiar-large",
+      "repository": "Z9RTM/FASTDIAR-GGUF",
+      "type": "f32",
+      "start": [],
+      "revision": "2bf8c813605233eeb50663bc369ca2e77a50db20",
+      "task": "diarization",
+      "languages": [],
+      "voice_files": false,
+      "files": [
+        {"type": "f32", "file": "FASTDIAR-large-10.4M-F32.gguf", "size": 49651232, "sha256": "68bf0aefd70e63fbbdbf5ac7edb294ff2bc8c9d7577c041f587160aa7e3bb422"}
+      ]
+    },
+    {
       "name": "re-use",
       "repository": "sakasegawa/NVIDIA-NemotronLabs-RE-USE-GGUF",
       "type": "f32",

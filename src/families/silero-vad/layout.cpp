@@ -18,9 +18,9 @@ void require(bool condition, const ModelFile & m, const std::string & what) {
     if (!condition) throw Error(Fault::File, m.path() + ": " + what + "; " + m.remedy());
 }
 
-/** Reads every key of the layout, checks the ones that must agree, and names the tensors they call for. */
-std::vector<TensorSpec> tensors(const ModelFile & m) {
-    check_model_keys(m, "detection", nullptr);
+}  // namespace
+
+std::vector<TensorSpec> network_tensors(const ModelFile & m) {
     const std::string p = "silero-vad.";
     const int chunk = m.size(p + "chunk_size"), context = m.size(p + "context_size");
     const int n_fft = m.size(p + "stft.n_fft"), hop = m.size(p + "stft.hop_length"), reflect = m.size(p + "stft.reflect");
@@ -60,6 +60,14 @@ std::vector<TensorSpec> tensors(const ModelFile & m) {
     t.push_back({"decoder.weight", {hidden, 1}, kF32});
     t.push_back({"decoder.bias", {1}, kF32});
     return t;
+}
+
+namespace {
+
+/** Reads every key of the layout, checks the ones that must agree, and names the tensors they call for. */
+std::vector<TensorSpec> tensors(const ModelFile & m) {
+    check_model_keys(m, "detection", nullptr);
+    return network_tensors(m);
 }
 
 }  // namespace

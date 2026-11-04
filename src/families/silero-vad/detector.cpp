@@ -33,9 +33,11 @@ Block build(Graph & g, const Network & network, const std::vector<float> & input
 
 }  // namespace
 
-Detector::Detector(const std::string & path, ggml_backend_t backend)
+Detector::Detector(const std::string & path, ggml_backend_t backend) : Detector(path, backend, layout, {}) {}
+
+Detector::Detector(const std::string & path, ggml_backend_t backend, const Layout & file_layout, const std::function<bool(const std::string & name)> & keep)
     : backend_(backend),
-      model_(path, backend, layout),
+      model_(path, backend, file_layout, keep),
       network_(model_),
       sample_rate_((int) model_.u32("speech.sample_rate")),
       allocr_(ggml_gallocr_new(ggml_backend_get_default_buffer_type(backend))) {

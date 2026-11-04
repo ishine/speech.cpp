@@ -1,0 +1,11 @@
+[project]
+name = "speech-cpp-fastdiar-clustering-reference"
+version = "0"
+description = "Dump the pinned official FASTDIAR streaming clustering for a native stage check"
+requires-python = ">=3.13,<3.14"
+dependencies = ["numpy==2.2.6", "scipy==1.15.1", "torch==2.13.0", "gguf==0.17.1", "soundfile==0.13.1", "silero-vad==6.2.1"]
+
+[tool.uv]
+package = false
+
+environments = ["sys_platform == 'darwin' and platform_machine == 'arm64'"]

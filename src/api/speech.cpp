@@ -23,6 +23,7 @@
 #include "qwen3-tts/layout.h"
 #include "semamba/layout.h"
 #include "silero-vad/layout.h"
+#include "fastdiar/layout.h"
 #include "sortformer/layout.h"
 
 // The C API's versions, statuses and errors, log, devices, load parameters, the table of families, the quantizing of
@@ -45,6 +46,7 @@ const Family families[] = {
     {SPEECH_TASK_RECOGNITION, nemotron_transcribe::layout, describe_nemotron_transcribe, load_nemotron_transcribe, nullptr},
     {SPEECH_TASK_DETECTION, silero_vad::layout, describe_silero_vad, load_silero_vad, nullptr},
     {SPEECH_TASK_DIARIZATION, sortformer::layout, describe_sortformer, load_sortformer, nullptr},
+    {SPEECH_TASK_DIARIZATION, fastdiar::layout, describe_fastdiar, load_fastdiar, nullptr},
     {SPEECH_TASK_ENHANCEMENT, semamba::layout, describe_semamba, load_semamba, nullptr},
 };
 
